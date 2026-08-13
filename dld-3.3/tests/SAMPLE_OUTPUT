@@ -1,0 +1,64 @@
+This file contains the output of running:
+
+./general < SAMPLE_INPUT
+
+It is not a test because its output is random and system-dependant.
+(Maybe if we had DejaGNU....)
+
+----------------------------------------------------------------------
+(dld) dld list-undefined.o
+(dld) list_undefined
+list_undefined is not executable
+(dld) dld ../libdld/libdld.a
+(dld) list_undefined
+No undefined symbols
+(dld) dld need.o ../libdld/libdld.a
+(dld) need random
+1: random
+(dld) random
+illegal command
+(dld) list_undefined
+There are a total of 1 undefined symbols:
+1: _random
+(dld) dld /lib/libc.a
+(dld) random
+2078917053
+(dld) random
+143302914
+(dld) uls random
+(dld) random
+illegal command
+(dld) dld get-sym.o ../libdld/libdld.a
+(dld) get_symbol dld_undefined_sym_count
+1: address = 0x1a0bc, value = 0x0
+(dld) dld read-a.out.o
+(dld) get_symbol dld_undefined_sym_count
+1: address = 0x1a0bc, value = 0x1
+(dld) list_undefined
+There are a total of 1 undefined symbols:
+1: _fread
+(dld) dld /lib/libc.a
+(dld) read_a_out hello.o
+Header information:
+magic = 0407, text size = 48, data size = 0
+bss size = 0, syms size = 48, entry point = 0x0, trsize = 36, drsize = 0
+
+
+Text relocation info
+Address = 0x14, local offset = 4
+extern = 0, relocation type = 8, addend = 0
+Address = 0x18, local offset = 3
+extern = 1, relocation type = 6, addend = -24
+Address = 0x1c, local offset = 4
+extern = 0, relocation type = 11, addend = 0
+
+
+string = ___gnu_compiled_c
+Type = 0x4, value = 0x00000000
+string = _hello
+Type = 0x5, value = 0x00000010
+string = gcc2_compiled.
+Type = 0x4, value = 0x00000000
+string = _printf
+Type = 0x1, value = 0x00000000
+(dld) 

@@ -1,0 +1,345 @@
+# Makefile.in generated automatically by automake 1.0 from Makefile.am
+
+# Copyright (C) 1994, 1995, 1996 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy, distribute and modify it.
+
+# FIXME: Add ansi2knr to AUTOMAKE_OPTIONS when Automake supports multiple dirs.
+
+
+SHELL = /bin/sh
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+AUTOMAKE_OPTIONS = gnits
+TESTS = call_add1 general.test overlay reload simple
+check_PROGRAMS = call_add1 general overlay \
+	reload reloadme simple
+
+# The C test programs.
+call_add1_SOURCES = call_add1.c
+general_SOURCES = general.c
+overlay_SOURCES = overlay.c
+reload_SOURCES = reload.c
+simple_SOURCES = simple.c
+
+noinst_HEADERS = overlay.h
+
+MOSTLYCLEANFILES = test.output
+CLEANFILES = general.test
+
+# Other objects we need.
+EXTRA_PROGRAMS = add1_test general_test overlay_test
+add1_test_SOURCES = add1.c
+general_test_SOURCES = 	hello.c print_arg.c read-a.out.c list-undefined.c \
+	get-sym.c need.c test-define.c print_global.c remove.c
+overlay_test_SOURCES = chain1.c chain2.c chain3.c	
+
+EXTRA_DIST = .cvsignore SAMPLE_INPUT SAMPLE_OUTPUT general.test.in mkgentest
+
+LIBDLD = $(top_builddir)/libdld/libdld.a
+LDADD = $(LIBDLD)
+CPPFLAGS = -I$(top_srcdir)
+mkinstalldirs = $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = ../config.h
+
+CC = @CC@
+LEX = @LEX@
+YACC = @YACC@
+
+DEFS = @DEFS@ -I. -I$(srcdir) -I..
+CFLAGS = @CFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+
+COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LINK = $(CC) $(LDFLAGS) -o $@
+add1_test_OBJECTS = add1.o
+EXTRA_add1_test_SOURCES =
+add1_test_LDADD = $(LDADD)
+general_test_OBJECTS = hello.o print_arg.o read-a.out.o list-undefined.o \
+get-sym.o need.o test-define.o print_global.o remove.o
+EXTRA_general_test_SOURCES =
+general_test_LDADD = $(LDADD)
+overlay_test_OBJECTS = chain1.o chain2.o chain3.o
+EXTRA_overlay_test_SOURCES =
+overlay_test_LDADD = $(LDADD)
+call_add1_OBJECTS = call_add1.o
+EXTRA_call_add1_SOURCES =
+call_add1_LDADD = $(LDADD)
+general_OBJECTS = general.o
+EXTRA_general_SOURCES =
+general_LDADD = $(LDADD)
+overlay_OBJECTS = overlay.o
+EXTRA_overlay_SOURCES =
+overlay_LDADD = $(LDADD)
+reload_OBJECTS = reload.o
+EXTRA_reload_SOURCES =
+reload_LDADD = $(LDADD)
+reloadme_SOURCES = reloadme.c
+reloadme_OBJECTS = reloadme.o
+EXTRA_reloadme_SOURCES =
+reloadme_LDADD = $(LDADD)
+simple_OBJECTS = simple.o
+EXTRA_simple_SOURCES =
+simple_LDADD = $(LDADD)
+HEADERS = $(noinst_HEADERS)
+
+DIST_COMMON = Makefile.am Makefile.in
+
+
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(BUILT_SOURCES) $(HEADERS) \
+	$(TEXINFOS) $(INFOS) $(MANS) $(EXTRA_DIST) $(DATA)
+DEP_DISTFILES = $(DIST_COMMON) $(SOURCES) $(BUILT_SOURCES) $(HEADERS) \
+	$(TEXINFOS) $(INFO_DEPS) $(MANS) $(EXTRA_DIST) $(DATA)
+
+TAR = tar
+SOURCES = $(add1_test_SOURCES) $(general_test_SOURCES) \
+$(overlay_test_SOURCES) $(call_add1_SOURCES) $(general_SOURCES) \
+$(overlay_SOURCES) $(reload_SOURCES) reloadme.c $(simple_SOURCES)
+OBJECTS = $(add1_test_OBJECTS) $(general_test_OBJECTS) \
+$(overlay_test_OBJECTS) $(call_add1_OBJECTS) $(general_OBJECTS) \
+$(overlay_OBJECTS) $(reload_OBJECTS) reloadme.o $(simple_OBJECTS)
+
+default: all
+
+
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in
+	cd $(top_srcdir) && automake $(subdir)/Makefile
+
+Makefile: $(top_builddir)/config.status Makefile.in
+	cd $(top_builddir) && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= ./config.status
+
+mostlyclean-checkPROGRAMS:
+
+clean-checkPROGRAMS:
+	rm -f $(check_PROGRAMS)
+
+distclean-checkPROGRAMS:
+
+maintainer-clean-checkPROGRAMS:
+
+.c.o:
+	$(COMPILE) $<
+
+mostlyclean-compile:
+	rm -f *.o core
+
+clean-compile:
+
+distclean-compile:
+	rm -f *.tab.c
+
+maintainer-clean-compile:
+$(add1_test_OBJECTS): ../config.h
+
+add1_test: $(add1_test_OBJECTS) $(add1_test_DEPENDENCIES)
+	$(LINK) $(add1_test_OBJECTS) $(add1_test_LDADD) $(LIBS)
+$(general_test_OBJECTS): ../config.h
+
+general_test: $(general_test_OBJECTS) $(general_test_DEPENDENCIES)
+	$(LINK) $(general_test_OBJECTS) $(general_test_LDADD) $(LIBS)
+$(overlay_test_OBJECTS): ../config.h
+
+overlay_test: $(overlay_test_OBJECTS) $(overlay_test_DEPENDENCIES)
+	$(LINK) $(overlay_test_OBJECTS) $(overlay_test_LDADD) $(LIBS)
+$(call_add1_OBJECTS): ../config.h
+
+call_add1: $(call_add1_OBJECTS) $(call_add1_DEPENDENCIES)
+	$(LINK) $(call_add1_OBJECTS) $(call_add1_LDADD) $(LIBS)
+$(general_OBJECTS): ../config.h
+
+general: $(general_OBJECTS) $(general_DEPENDENCIES)
+	$(LINK) $(general_OBJECTS) $(general_LDADD) $(LIBS)
+$(overlay_OBJECTS): ../config.h
+
+overlay: $(overlay_OBJECTS) $(overlay_DEPENDENCIES)
+	$(LINK) $(overlay_OBJECTS) $(overlay_LDADD) $(LIBS)
+$(reload_OBJECTS): ../config.h
+
+reload: $(reload_OBJECTS) $(reload_DEPENDENCIES)
+	$(LINK) $(reload_OBJECTS) $(reload_LDADD) $(LIBS)
+$(reloadme_OBJECTS): ../config.h
+$(simple_OBJECTS): ../config.h
+
+simple: $(simple_OBJECTS) $(simple_DEPENDENCIES)
+	$(LINK) $(simple_OBJECTS) $(simple_LDADD) $(LIBS)
+
+ID: $(HEADERS) $(SOURCES)
+	here=`pwd` && cd $(srcdir) && mkid -f$$here/ID $(SOURCES) $(HEADERS)
+
+tags: TAGS
+
+TAGS: $(HEADERS) $(SOURCES) $(TAGS_DEPENDENCIES)
+	here=`pwd` && cd $(srcdir) && etags $(ETAGS_ARGS) $(SOURCES) $(HEADERS) -o $$here/TAGS
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	rm -f TAGS ID
+
+maintainer-clean-tags:
+
+subdir = tests
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+distdir: $(DEP_DISTFILES)
+	@for file in `cd $(srcdir) && echo $(DISTFILES)`; do \
+	  test -f $(distdir)/$$file \
+	  || ln $(srcdir)/$$file $(distdir)/$$file 2> /dev/null \
+	  || cp -p $(srcdir)/$$file $(distdir)/$$file; \
+	done
+add1.o: add1.c
+call_add1.o: call_add1.c
+chain1.o: chain1.c overlay.h ../system.h
+chain2.o: chain2.c overlay.h ../system.h
+chain3.o: chain3.c overlay.h ../system.h
+general.o: general.c ../system.h
+get-sym.o: get-sym.c
+hello.o: hello.c
+list-undefined.o: list-undefined.c
+need.o: need.c
+overlay.o: overlay.c overlay.h ../system.h
+print_arg.o: print_arg.c
+print_global.o: print_global.c
+read-a.out.o: read-a.out.c ../libdld/defs.h ../system.h ../dld.h
+reload.o: reload.c
+reloadme.o: reloadme.c
+remove.o: remove.c
+simple.o: simple.c
+test-define.o: test-define.c
+
+check-TESTS: $(TESTS)
+	@failed=0; all=0; \
+	srcdir=$(srcdir); export srcdir; \
+	for tst in $(TESTS); do \
+	  all=`expr $$all + 1`; \
+	  if test -f $$tst; then dir=.; \
+	  else dir="$(srcdir)"; fi; \
+	  if $$dir/$$tst; then \
+	    echo "PASS: $$tst"; \
+	  else \
+	    failed=`expr $$failed + 1`; \
+	    echo "FAIL: $$tst"; \
+	  fi; \
+	done; \
+	if test "$$failed" -eq 0; then \
+	  echo "========================"; \
+	  echo "All $$all tests passed"; \
+	  echo "========================"; \
+	else \
+	  echo "$$failed of $$all tests failed"; \
+	fi
+info:
+
+dvi:
+
+check: all $(check_PROGRAMS) check-TESTS
+
+installcheck:
+
+install-exec: 
+
+install-data: 
+
+install: install-exec install-data all
+	@:
+
+uninstall: 
+
+all: $(HEADERS) Makefile
+
+install-strip:
+	$(MAKE) INSTALL_PROGRAM='$(INSTALL_PROGRAM) -s' install
+installdirs:
+
+
+mostlyclean-generic:
+	test -z "$(MOSTLYCLEANFILES)" || rm -f $(MOSTLYCLEANFILES)
+
+clean-generic:
+	test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
+
+distclean-generic:
+	rm -f Makefile $(DISTCLEANFILES)
+	rm -f config.cache config.log $(CONFIG_HEADER) stamp-h
+
+maintainer-clean-generic:
+	test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
+	test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
+mostlyclean:  mostlyclean-checkPROGRAMS mostlyclean-compile \
+		mostlyclean-tags mostlyclean-generic
+
+clean:  clean-checkPROGRAMS clean-compile clean-tags clean-generic \
+		mostlyclean 
+
+distclean:  distclean-checkPROGRAMS distclean-compile distclean-tags \
+		distclean-generic clean 
+	rm -f config.status
+
+maintainer-clean:  maintainer-clean-checkPROGRAMS \
+		maintainer-clean-compile maintainer-clean-tags \
+		maintainer-clean-generic distclean 
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+.PHONY: default mostlyclean-checkPROGRAMS distclean-checkPROGRAMS \
+clean-checkPROGRAMS maintainer-clean-checkPROGRAMS mostlyclean-compile \
+distclean-compile clean-compile maintainer-clean-compile tags \
+mostlyclean-tags distclean-tags clean-tags maintainer-clean-tags \
+distdir check-TESTS info dvi check installcheck install-exec \
+install-data install uninstall all installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
+
+
+# reloadme must be only partially linked:
+reloadme: $(reloadme_OBJECTS) $(reloadme_DEPENDENCIES)
+	$(CC) $(LDFLAGS) -r -o $@ $(reloadme_OBJECTS) $(reloadme_LDADD) $(LIBS)
+
+check-TESTS: $(add1_test_OBJECTS) $(general_test_OBJECTS) $(overlay_test_OBJECTS)
+$(check_PROGRAMS): $(LIBDLD)
+general.test: general.test.in mkgentest
+	rm -f general.T
+	LIBDLD="$(LIBDLD)" $(srcdir)/mkgentest $(srcdir)/general.test.in > general.T
+	chmod +x general.T
+	mv general.T general.test
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

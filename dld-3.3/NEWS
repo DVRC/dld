@@ -1,0 +1,63 @@
+Major changes in release 3.3:
+
+* Bug fixes and source code cleanup
+* The sources are now ANSI C, and are automatically de-ansified (with
+  ansi2knr) on non-ANSI platforms.
+* Dld is now maintained by Gordon Matzigkeit <gord@gnu.ai.mit.edu>
+* The build environment is mostly compliant with the GNU standards
+* Added fuller tilde (`~') PATH support for dld_find_executable
+* GNU C++ constructor support has been removed for portability reasons
+* New documentation (dld)Other Languages. suggests ways to link in modules
+  that aren't written in C
+
+Major changes in release 3.2.8:
+
+* Tildes (`~') in the PATH environment variable are now handled
+  properly by dld_find_executable
+* New port to Convex C-Series
+
+Major changes in release 3.2.7:
+
+* Bug fixes
+* dld_perror now prints the name of the offending symbol if dld_errno
+  is DLD_EMULTDEFS
+* Added support for GNU C++ constructors and destructors
+
+Major changes in release 3.2.6:
+
+* Bug fixes
+
+Major changes in release 3.2.5:
+
+* Bug fixes
+* Added `-static' so that dld works on SunOS
+
+Major changes in release 3.2.4:
+
+* Bug fixes
+* Dld is now maintained by Aubrey Jaffer <jaffer@ai.mit.edu>
+* New port to Linux
+
+Major changes in release 3.2.3:
+
+* New port to Dynix on the Sequent Symmetry
+
+Major changes in release 3.2.2:
+
+* Bug fixes
+
+Major changes in release 3.2.1:
+
+* Bug fixes
+* Many new and renamed functions
+* New port to the Atari ST
+
+Major changes in release 3.2:
+
+* Bug fixes
+* Renamed all external functions to begin with `dld_'
+
+Major changes in release 3.1.1:
+
+* Bug fixes
+* New port to SunOS 4.x

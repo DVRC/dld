@@ -1,0 +1,47 @@
+* Do a lot of cleaning up, to bring the source code up to GNU
+standards... then porting should become easier.
+
+* Design a backend for dld, rather than having ad hoc #ifdefs
+scattered through the code.  There should be backends for A.OUT, COFF,
+ELF, and/or the GNU BFD library.  Look into extending the BFD interface
+to include DLD functions.
+
+* Write a replacement for ld.so that initializes the dld internal
+symbol table so that dld_init doesn't need to hunt for symbol tables
+on disk.  Maybe even add support to GCC startup files and -fPIC
+options so that shared libraries can be used on all the systems that
+dld supports.
+
+* Write compatibility functions for ELF (dlopen, dlsym, dlclose) and
+HP-UX (shl_load, shl_findsym, shl_unload) that use dld to emulate the
+other systems, in case people want to replace broken or missing dl*
+functions.
+
+* Look into integrating dld with the GNU C library.
+
+* Handle the problem of the instruction cache: when removing/replacing
+any functions, the I-cache (if there is one) should be flushed.
+
+* Implement support for g++'s constructors using the GNU ld method,
+and merge it into the base dld functions so that it is transparent.
+
+* Add a function to return the name of a symbol given its address.
+This would be useful for debugging.
+
+* Write a "bind-name-to-address" function.  That is, the storage for
+the variable has already been allocated by other (non-dld) functions,
+and we want to enter a symtab entry that points to this location.
+
+* Make the N_COMM data block contiguous: put down the offset into the
+N_COMM area as the symbol's value in the first pass, eliminate the
+linked-list altogether, and add to the symbol's value the starting
+address of the N_COMM area when I do the relocation of other symbol
+addresses--because I need to go through the nlists during the
+relocation phase anyway.
+
+* Configuration tests to discover whether '_' should be prepended to C
+symbols.
+
+* Add in support to link (mmap) in shared libraries, such as on SunOS.
+
+* Write a higher level interface to the symtab and unlink functions.

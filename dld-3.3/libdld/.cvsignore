@@ -1,0 +1,6 @@
+.deps
+Makefile
+Makefile.in
+ansi2knr
+ansi2knr.1
+ansi2knr.c

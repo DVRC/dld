@@ -1,0 +1,72 @@
+dnl Process this file with autoconf to produce a configure script.
+dnl Written by Gordon Matzigkeit <gord@gnu.ai.mit.edu>
+AC_INIT(libdld/ul_symbol.c)
+AC_CONFIG_HEADER(config.h)
+
+dnl Required by automake...
+AC_PREREQ(2.5)
+
+dnl Don't forget to update dld.lsm before releasing!
+PACKAGE=dld
+VERSION=3.3
+AC_SUBST(PACKAGE)
+AC_SUBST(VERSION)
+
+AC_ARG_PROGRAM
+
+dnl Get the host type.
+AC_CANONICAL_HOST
+
+dnl Checks for programs.
+AC_PROG_CC
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+AC_PROG_INSTALL
+
+dnl Use automatic de-ansification.
+fp_C_PROTOTYPES
+
+# Let the user know if we're supported, to reduce unnecessary problem reports.
+case "$host" in
+ # Supported hosts.
+ c*-convex-bsd* | i*86-*-linuxaout* | i*86-*-linuxoldld* | \
+ i*86-sequent-sysv4* | m68k-*-sunos3* | vax-*-ultrix* ) ;;
+
+ # Work around broken SunOS configuration.
+ *-*-sunos4*)
+    AC_MSG_WARN([on SunOS 4.x, dld binaries must be statically linked])
+
+    AC_MSG_CHECKING([for static linking compiler flag])
+    if test x"$GCC" = x; then
+      LDFLAGS="$LDFLAGS -Bstatic"
+      AC_MSG_RESULT([-Bstatic])
+    else
+      LDFLAGS="$LDFLAGS -static"
+      AC_MSG_RESULT([-static])
+    fi
+    ;;
+  # Unsupported hosts.
+  *)
+    AC_MSG_WARN([dld has not been ported to $host_alias])
+    ;;
+esac
+
+dnl Checks for libraries.
+
+dnl Checks for header files.
+AC_HEADER_STDC
+AC_HEADER_STAT
+AC_CHECK_HEADERS(sys/file.h sys/time.h unistd.h)
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+AC_C_CONST
+AC_TYPE_OFF_T
+AC_TYPE_SIZE_T
+
+dnl Checks for library functions.
+AC_FUNC_MMAP
+AC_CHECK_FUNCS(getcwd getwd memcpy)
+AC_REPLACE_FUNCS(memset)
+
+AC_OUTPUT([Makefile doc/Makefile libdld/Makefile tests/Makefile],
+[echo timestamp > stamp-h])

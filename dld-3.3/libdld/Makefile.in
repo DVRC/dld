@@ -1,0 +1,285 @@
+# Makefile.in generated automatically by automake 1.0 from Makefile.am
+
+# Copyright (C) 1994, 1995, 1996 Free Software Foundation, Inc.
+# This Makefile.in is free software; the Free Software Foundation
+# gives unlimited permission to copy, distribute and modify it.
+
+
+SHELL = /bin/sh
+
+srcdir = @srcdir@
+top_srcdir = @top_srcdir@
+VPATH = @srcdir@
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+
+bindir = @bindir@
+sbindir = @sbindir@
+libexecdir = @libexecdir@
+datadir = @datadir@
+sysconfdir = @sysconfdir@
+sharedstatedir = @sharedstatedir@
+localstatedir = @localstatedir@
+libdir = @libdir@
+infodir = @infodir@
+mandir = @mandir@
+includedir = @includedir@
+oldincludedir = /usr/include
+
+pkgdatadir = $(datadir)/@PACKAGE@
+pkglibdir = $(libdir)/@PACKAGE@
+pkgincludedir = $(includedir)/@PACKAGE@
+
+top_builddir = ..
+
+INSTALL = @INSTALL@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_SCRIPT = @INSTALL_SCRIPT@
+transform = @program_transform_name@
+
+AUTOMAKE_OPTIONS = ansi2knr gnits
+lib_LIBRARIES = dld
+dld_SOURCES = define.c dld.c error.c find_exec.c get_func.c get_symbol.c \
+	list_undef.c mk_dummy.c ref.c ul_file.c ul_symbol.c remove.c \
+	@LIBOBJS@
+
+noinst_HEADERS = defs.h
+CPPFLAGS = -I$(top_srcdir)
+
+EXTRA_DIST = .cvsignore
+mkinstalldirs = $(top_srcdir)/mkinstalldirs
+CONFIG_HEADER = ../config.h
+LIBRARIES = $(lib_LIBRARIES)
+
+lib_LIBFILES = libdld.a
+
+CC = @CC@
+LEX = @LEX@
+YACC = @YACC@
+
+DEFS = @DEFS@ -I. -I$(srcdir) -I..
+CFLAGS = @CFLAGS@
+LDFLAGS = @LDFLAGS@
+LIBS = @LIBS@
+
+COMPILE = $(CC) -c $(DEFS) $(INCLUDES) $(CPPFLAGS) $(CFLAGS)
+LINK = $(CC) $(LDFLAGS) -o $@
+
+ANSI2KNR = @ANSI2KNR@
+o = .@U@o
+dld_LIBADD =
+dld_OBJECTS = define$o dld$o error$o find_exec$o get_func$o get_symbol$o \
+list_undef$o mk_dummy$o ref$o ul_file$o ul_symbol$o remove$o
+EXTRA_dld_SOURCES =
+LIBFILES =  libdld.a
+AR = ar
+RANLIB = @RANLIB@
+HEADERS = $(noinst_HEADERS)
+
+DIST_COMMON = Makefile.am Makefile.in
+
+
+PACKAGE = @PACKAGE@
+VERSION = @VERSION@
+
+DISTFILES = $(DIST_COMMON) $(SOURCES) $(BUILT_SOURCES) $(HEADERS) \
+	$(TEXINFOS) $(INFOS) $(MANS) $(EXTRA_DIST) $(DATA)
+DEP_DISTFILES = $(DIST_COMMON) $(SOURCES) $(BUILT_SOURCES) $(HEADERS) \
+	$(TEXINFOS) $(INFO_DEPS) $(MANS) $(EXTRA_DIST) $(DATA)
+
+TAR = tar
+SOURCES = $(dld_SOURCES)
+OBJECTS = $(dld_OBJECTS)
+
+default: all
+
+
+$(srcdir)/Makefile.in: Makefile.am $(top_srcdir)/configure.in
+	cd $(top_srcdir) && automake $(subdir)/Makefile
+
+Makefile: $(top_builddir)/config.status Makefile.in
+	cd $(top_builddir) && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= ./config.status
+
+mostlyclean-libLIBRARIES:
+
+clean-libLIBRARIES:
+	rm -f $(lib_LIBFILES)
+
+distclean-libLIBRARIES:
+
+maintainer-clean-libLIBRARIES:
+
+install-libLIBRARIES: $(lib_LIBFILES)
+	$(mkinstalldirs) $(libdir)
+	list="$(lib_LIBFILES)"; for p in $$list; do \
+	  if test -f $$p; then \
+	    $(INSTALL_DATA) $$p $(libdir)/$$p; \
+	    $(RANLIB) $(libdir)/$$p; \
+	  else :; fi; \
+	done
+
+uninstall-libLIBRARIES:
+	list="$(lib_LIBFILES)"; for p in $$list; do \
+	  rm -f $(libdir)/$$p; \
+	done
+
+.c.o:
+	$(COMPILE) $<
+
+mostlyclean-compile:
+	rm -f *.o core
+
+clean-compile:
+
+distclean-compile:
+	rm -f *.tab.c
+
+maintainer-clean-compile:
+
+.c._c:
+	$(ANSI2KNR) $< > $*.tmp && mv $*.tmp $@
+
+._c._o:
+	@echo $(COMPILE) $<
+	@rm -f _$*.c
+	@ln $< _$*.c && $(COMPILE) _$*.c && mv _$*.o $@ && rm _$*.c
+
+.c._o:
+	$(ANSI2KNR) $< > $*.tmp && mv $*.tmp $*._c
+	@echo $(COMPILE) $*._c
+	@rm -f _$*.c
+	@ln $*._c _$*.c && $(COMPILE) _$*.c && mv _$*.o $@ && rm _$*.c
+
+ansi2knr: ansi2knr.o
+	$(LINK) ansi2knr.o $(LIBS)
+
+$(OBJECTS): $(ANSI2KNR)
+ansi2knr.o: $(CONFIG_HEADER)
+
+mostlyclean-kr:
+	rm -f *._o *._c _*.c _*.o
+
+clean-kr:
+
+distclean-kr:
+	rm -f ansi2knr
+
+maintainer-clean-kr:
+$(dld_OBJECTS): ../config.h
+
+libdld.a: $(dld_OBJECTS) $(dld_LIBADD)
+	rm -f libdld.a
+	$(AR) cru libdld.a $(dld_OBJECTS) $(dld_LIBADD)
+	$(RANLIB) libdld.a
+
+ID: $(HEADERS) $(SOURCES)
+	here=`pwd` && cd $(srcdir) && mkid -f$$here/ID $(SOURCES) $(HEADERS)
+
+tags: TAGS
+
+TAGS: $(HEADERS) $(SOURCES) $(TAGS_DEPENDENCIES)
+	here=`pwd` && cd $(srcdir) && etags $(ETAGS_ARGS) $(SOURCES) $(HEADERS) -o $$here/TAGS
+
+mostlyclean-tags:
+
+clean-tags:
+
+distclean-tags:
+	rm -f TAGS ID
+
+maintainer-clean-tags:
+
+subdir = libdld
+distdir = $(top_builddir)/$(PACKAGE)-$(VERSION)/$(subdir)
+distdir: $(DEP_DISTFILES)
+	@for file in `cd $(srcdir) && echo $(DISTFILES)`; do \
+	  test -f $(distdir)/$$file \
+	  || ln $(srcdir)/$$file $(distdir)/$$file 2> /dev/null \
+	  || cp -p $(srcdir)/$$file $(distdir)/$$file; \
+	done
+define.o: define.c defs.h ../system.h ../dld.h
+dld$o: dld.c defs.h ../system.h ../dld.h
+error.o: error.c defs.h ../dld.h
+find_exec$o: find_exec.c ../system.h ../dld.h
+get_func.o: get_func.c defs.h ../dld.h
+get_symbol.o: get_symbol.c defs.h ../dld.h
+gxxload.o: gxxload.c
+list_undef.o: list_undef.c defs.h ../dld.h
+mk_dummy.o: mk_dummy.c defs.h ../system.h ../dld.h
+ref.o: ref.c defs.h ../system.h ../dld.h
+remove.o: remove.c defs.h ../system.h ../dld.h
+ul_file.o: ul_file.c defs.h ../dld.h
+ul_symbol.o: ul_symbol.c defs.h ../dld.h
+
+info:
+
+dvi:
+
+check: all
+
+installcheck:
+
+install-exec: install-libLIBRARIES
+
+install-data: 
+
+install: install-exec install-data all
+	@:
+
+uninstall: uninstall-libLIBRARIES
+
+all: $(LIBFILES) $(HEADERS) Makefile
+
+install-strip:
+	$(MAKE) INSTALL_PROGRAM='$(INSTALL_PROGRAM) -s' install
+installdirs:
+	$(mkinstalldirs)  $(libdir)
+
+
+mostlyclean-generic:
+	test -z "$(MOSTLYCLEANFILES)" || rm -f $(MOSTLYCLEANFILES)
+
+clean-generic:
+	test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
+
+distclean-generic:
+	rm -f Makefile $(DISTCLEANFILES)
+	rm -f config.cache config.log $(CONFIG_HEADER) stamp-h
+
+maintainer-clean-generic:
+	test -z "$(MAINTAINERCLEANFILES)" || rm -f $(MAINTAINERCLEANFILES)
+	test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
+mostlyclean:  mostlyclean-libLIBRARIES mostlyclean-compile \
+		mostlyclean-kr mostlyclean-tags mostlyclean-generic
+
+clean:  clean-libLIBRARIES clean-compile clean-kr clean-tags \
+		clean-generic mostlyclean 
+
+distclean:  distclean-libLIBRARIES distclean-compile distclean-kr \
+		distclean-tags distclean-generic clean 
+	rm -f config.status
+
+maintainer-clean:  maintainer-clean-libLIBRARIES \
+		maintainer-clean-compile maintainer-clean-kr \
+		maintainer-clean-tags maintainer-clean-generic \
+		distclean 
+	@echo "This command is intended for maintainers to use;"
+	@echo "it deletes files that may require special tools to rebuild."
+
+.PHONY: default mostlyclean-libLIBRARIES distclean-libLIBRARIES \
+clean-libLIBRARIES maintainer-clean-libLIBRARIES uninstall-libLIBRARIES \
+install-libLIBRARIES mostlyclean-compile distclean-compile \
+clean-compile maintainer-clean-compile mostlyclean-kr distclean-kr \
+clean-kr maintainer-clean-kr tags mostlyclean-tags distclean-tags \
+clean-tags maintainer-clean-tags distdir info dvi check installcheck \
+install-exec install-data install uninstall all installdirs \
+mostlyclean-generic distclean-generic clean-generic \
+maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+
+.SUFFIXES:
+.SUFFIXES: .c .o ._c ._o
+
+# Tell versions [3.59,3.63) of GNU make to not export all variables.
+# Otherwise a system limit (for SysV at least) may be exceeded.
+.NOEXPORT:

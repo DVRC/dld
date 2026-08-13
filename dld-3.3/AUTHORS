@@ -1,0 +1,9 @@
+Authors of GNU Dld.
+
+W. Wilson Ho.  Wrote all files until dld-3.2.3.
+
+Aubrey Jaffer.  Made changes for Linux port (added all '#ifdef linux'
+sections).
+
+Gordon Matzigkeit.  Wrote Makefile.am and configure files.  Touched all
+existing files.

@@ -1,0 +1,19 @@
+#! /bin/sh
+# Author: Gord Matzigkeit
+
+if test -z "$LIBDLD"; then
+  echo "mkgentest: error: you must specify the LIBDLD environment variable" 1>&2;
+  exit 1
+fi
+  
+if test -z "$1" || test -n "$2"; then
+  echo "mkgentest: error: wrong number of arguments" 1>&2;
+  exit 1
+fi
+
+FILE_in="$1"
+
+# Do all the substitutions.
+sed -e "s%@LIBDLD@%$LIBDLD%g" $FILE_in
+
+exit 0

@@ -1,0 +1,21 @@
+* How do we solve the problem that a program linked against a static
+libc doesn't have dynamic access to the whole library symbol table?
+
+* tests/reload fails on linuxoldld:
+dld_link: multiple definitions of symbol: 
+dld_get_func: multiple definitions of symbol: 
+
+* dld_function_executable_p gives false negatives: i.e. it reports
+that a function is not executable when it really is.
+
+* dld_init can fail completely if our parent process gives us a
+nonstandard argv[0] when it calls exec(2).  This is bad.  See TODO for
+a possible solution on systems with shared libraries (i.e. write our
+own ld.so).
+
+* C++ support was never well-integrated with the rest of dld.  It has
+been temporarily removed from the library, until it may be properly
+written.
+
+* On VAX Ultrix 4.4, dld aborts with DLD_EBADRELOC when it encounters
+absolute symbols (N_ABS).  What *are* absolute symbols?

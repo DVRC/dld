@@ -1,0 +1,37 @@
+Dld
+
+   "Dld" is a library package of C functions that performs "dynamic
+link editing".  Programs that use dld can add or remove compiled
+object code from a process anytime during its execution.  Loading
+modules, searching libraries, resolving external references, and
+allocating storage for global and static data structures are all
+performed at run time.
+
+Dld supports a.out object types on the following platforms:
+  c*-convex-bsd*
+  i386-*-linuxaout*, i386-*-linuxoldld*
+  i386-sequent-sysv4*
+  m68k-*-sunos3*
+  m68k-*-sunos4* (**see warning)
+  sparc-*-sunos4* (**see warning)
+  vax-*-ultrix*
+
+** WARNING: on SunOS 4.x, dld currently conflicts with system shared
+libraries, and will behave unpredictably.  As a workaround, you must
+statically link your own binaries if you use the dld library.  Use
+``-static'' with gcc, or ``-Bstatic'' with the bundled SunOS cc or
+acc.
+
+Other platforms and object types will not be supported until version
+4.0, when dld will be able to use the GNU BFD library to support a
+much wider range of object types.  In the meantime, use the native
+dlopen C library function on COFF or ELF platforms (shl_load on HP-UX)
+instead of dld.
+
+See the file NEWS for a description of recent changes to dld.
+
+See the file INSTALL for instructions on how to build and install dld.
+
+Mail suggestions and bug reports for dld to Gord Matzigkeit
+<gord@gnu.ai.mit.edu>.
+

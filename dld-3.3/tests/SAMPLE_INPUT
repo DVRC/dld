@@ -1,0 +1,20 @@
+dld list-undefined.o
+list_undefined
+dld ../libdld/libdld.a
+list_undefined
+dld need.o ../libdld/libdld.a
+need random
+random
+list_undefined
+dld /lib/libc.a
+random
+random
+uls random
+random
+dld get-sym.o ../libdld/libdld.a
+get_symbol dld_undefined_sym_count
+dld read-a.out.o
+get_symbol dld_undefined_sym_count
+list_undefined
+dld /lib/libc.a
+read_a_out hello.o

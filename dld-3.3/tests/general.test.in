@@ -1,0 +1,94 @@
+#! /bin/sh
+# general.test -- Exercise the generalized dynamic linking program.
+# Process general.test.in with mkgentest to produce general.test.in.
+#
+# This program is placed in the public domain.
+# Written by Gordon Matzigkeit <gord@gnu.ai.mit.edu>
+
+tmpfile="test.output"
+rm -f $tmpfile
+
+./general << EOF > $tmpfile
+dld hello.o
+hello
+ul hello.o
+hello
+dld print_arg.o
+print_arg 1 2 arg3 blah blah blah
+dld list-undefined.o
+list_undefined
+dld @LIBDLD@
+list_undefined
+uls list_undefined
+dld list-undefined.o
+list_undefinded
+list_undefined
+dld @LIBDLD@
+list_undefined
+dld need.o @LIBDLD@
+need random
+random
+list_undefined
+dld test-define.o ../libdld/libdld.a
+test_define
+print_global
+dld remove.o ../libdld/libdld.a
+test_remove global_int
+print_global
+EOF
+
+echo DONE >> $tmpfile
+
+cmp -s - $tmpfile << EOF || exit 1
+(dld) dld hello.o
+(dld) hello
+hello world!
+(dld) ul hello.o
+(dld) hello
+illegal command
+(dld) dld print_arg.o
+(dld) print_arg 1 2 arg3 blah blah blah
+blah
+blah
+blah
+arg3
+2
+1
+print_arg
+(dld) dld list-undefined.o
+(dld) list_undefined
+list_undefined is not executable
+(dld) dld @LIBDLD@
+(dld) list_undefined
+No undefined symbols
+(dld) uls list_undefined
+(dld) dld list-undefined.o
+(dld) list_undefinded
+illegal command
+(dld) list_undefined
+list_undefined is not executable
+(dld) dld @LIBDLD@
+(dld) list_undefined
+No undefined symbols
+(dld) dld need.o @LIBDLD@
+(dld) need random
+1: random
+(dld) random
+illegal command
+(dld) list_undefined
+There are a total of 1 undefined symbols:
+1: _random
+(dld) dld test-define.o ../libdld/libdld.a
+(dld) test_define
+print_global should now give 12345
+(dld) print_global
+the value of global_int is 12345
+(dld) dld remove.o ../libdld/libdld.a
+(dld) test_remove global_int
+(dld) print_global
+print_global is not executable
+(dld) DONE
+EOF
+
+rm -f $tmpfile
+exit 0
